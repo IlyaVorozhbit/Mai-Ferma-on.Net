@@ -1,0 +1,280 @@
+# User-specific files
+Ferma 2018/*.suo
+Ferma 2018/*.user
+Ferma 2018/*.userosscache
+Ferma 2018/*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+Ferma 2018/*.userprefs
+
+# Build results
+Ferma 2018/[Dd]ebug/
+Ferma 2018/[Dd]ebugPublic/
+Ferma 2018/[Rr]elease/
+Ferma 2018/[Rr]eleases/
+Ferma 2018/x64/
+Ferma 2018/x86/
+Ferma 2018/bld/
+Ferma 2018/[Bb]in/
+Ferma 2018/[Oo]bj/
+Ferma 2018/[Ll]og/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# MSTest test Results
+Ferma 2018/[Tt]est[Rr]esult*/
+Ferma 2018/[Bb]uild[Ll]og.*
+
+# NUNIT
+Ferma 2018/Ferma 2018/*.VisualState.xml
+Ferma 2018/TestResult.xml
+
+# Build Results of an ATL Project
+Ferma 2018/[Dd]ebugPS/
+Ferma 2018/[Rr]eleasePS/
+Ferma 2018/dlldata.c
+
+# .NET Core
+Ferma 2018/project.lock.json
+Ferma 2018/project.fragment.lock.json
+Ferma 2018/artifacts/
+Ferma 2018/**/Properties/launchSettings.json
+
+Ferma 2018/*_i.c
+Ferma 2018/*_p.c
+Ferma 2018/*_i.h
+Ferma 2018/*.ilk
+Ferma 2018/*.meta
+Ferma 2018/*.obj
+Ferma 2018/*.pch
+Ferma 2018/*.pdb
+Ferma 2018/*.pgc
+Ferma 2018/*.pgd
+Ferma 2018/*.rsp
+Ferma 2018/*.sbr
+Ferma 2018/*.tlb
+Ferma 2018/*.tli
+Ferma 2018/*.tlh
+Ferma 2018/*.tmp
+Ferma 2018/*.tmp_proj
+Ferma 2018/*.log
+Ferma 2018/*.vspscc
+Ferma 2018/*.vssscc
+.builds
+Ferma 2018/*.pidb
+Ferma 2018/*.svclog
+Ferma 2018/*.scc
+
+# Chutzpah Test files
+Ferma 2018/_Chutzpah*
+
+# Visual C++ cache files
+Ferma 2018/ipch/
+Ferma 2018/*.aps
+Ferma 2018/*.ncb
+Ferma 2018/*.opendb
+Ferma 2018/*.opensdf
+Ferma 2018/*.sdf
+Ferma 2018/*.cachefile
+Ferma 2018/*.VC.db
+Ferma 2018/*.VC.VC.opendb
+
+# Visual Studio profiler
+Ferma 2018/*.psess
+Ferma 2018/*.vsp
+Ferma 2018/*.vspx
+Ferma 2018/*.sap
+
+# TFS 2012 Local Workspace
+Ferma 2018/$tf/
+
+# Guidance Automation Toolkit
+Ferma 2018/*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+Ferma 2018/*.[Rr]e[Ss]harper
+Ferma 2018/*.DotSettings.user
+
+
+# DotCover is a Code Coverage Tool
+Ferma 2018/*.dotCover
+
+# Visual Studio code coverage results
+Ferma 2018/*.coverage
+Ferma 2018/*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunchFerma 2018/*.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+Ferma 2018/*.mm.*
+Ferma 2018/AutoTest.Net/
+
+# Web workbench (sass)
+Ferma 2018/.sass-cache/
+
+# Installshield output folder
+Ferma 2018/[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+Ferma 2018/DocProject/buildhelp/
+Ferma 2018/DocProject/Help/Ferma 2018/*.HxT
+Ferma 2018/DocProject/Help/Ferma 2018/*.HxC
+Ferma 2018/DocProject/Help/Ferma 2018/*.hhc
+Ferma 2018/DocProject/Help/Ferma 2018/*.hhk
+Ferma 2018/DocProject/Help/Ferma 2018/*.hhp
+Ferma 2018/DocProject/Help/Html2
+Ferma 2018/DocProject/Help/html
+
+# Click-Once directory
+Ferma 2018/publish/
+
+# Publish Web Output
+Ferma 2018/*.[Pp]ublish.xml
+Ferma 2018/*.azurePubxml
+# TODO: Uncomment the next line to ignore your web deploy settings.
+# By default, sensitive information, such as encrypted password
+# should be stored in the .pubxml.user file.
+#Ferma 2018/*.pubxml
+Ferma 2018/*.pubxml.user
+Ferma 2018/*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+PublishScripts/
+
+# NuGet Packages
+Ferma 2018/*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+Ferma 2018/*.nuget.props
+Ferma 2018/*.nuget.targets
+
+# Microsoft Azure Build Output
+Ferma 2018/csx/
+Ferma 2018/*.build.csdef
+
+# Microsoft Azure Emulator
+Ferma 2018/ecf/
+Ferma 2018/rcf/
+
+# Windows Store app package directories and files
+Ferma 2018/AppPackages/
+Ferma 2018/BundleArtifacts/
+Ferma 2018/Package.StoreAssociation.xml
+Ferma 2018/_pkginfo.txt
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+Ferma 2018/*.[Cc]ache
+# but keep track of directories ending in .cache
+!Ferma 2018/*.[Cc]ache/
+
+# Others
+Ferma 2018/ClientBin/
+Ferma 2018/~$*
+Ferma 2018/*~
+Ferma 2018/*.dbmdl
+Ferma 2018/*.dbproj.schemaview
+Ferma 2018/*.jfm
+Ferma 2018/*.pfx
+Ferma 2018/*.publishsettings
+Ferma 2018/orleans.codegen.cs
+
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+Ferma 2018/Generated_Code/
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLogFerma 2018/*.XML
+UpgradeLogFerma 2018/*.htm
+
+# SQL Server files
+Ferma 2018/*.mdf
+Ferma 2018/*.ldf
+Ferma 2018/*.ndf
+
+# Business Intelligence projects
+Ferma 2018/*.rdl.data
+Ferma 2018/*.bim.layout
+Ferma 2018/*.bim_Ferma 2018/*.settings
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+Ferma 2018/*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Typescript v1 declaration files
+typings/
+
+# Visual Studio 6 build log
+Ferma 2018/*.plg
+
+# Visual Studio 6 workspace options file
+Ferma 2018/*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+Ferma 2018/*.vbw
+
+# Visual Studio LightSwitch build output
+**/Ferma 2018/*.HTMLClient/GeneratedArtifacts
+**/Ferma 2018/*.DesktopClient/GeneratedArtifacts
+**/Ferma 2018/*.DesktopClient/ModelManifest.xml
+**/Ferma 2018/*.Server/GeneratedArtifacts
+**/Ferma 2018/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# JetBrains Rider
+.idea/
+Ferma 2018/*.sln.iml
+
+# CodeRush
+.cr/
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+Ferma 2018/*.pyc
+
+# Cake - Uncomment if you are using it
+# tools/**
+# !tools/packages.config
+
+# Telerik's JustMock configuration file
+Ferma 2018/*.jmconfig
+
+# BizTalk build output
+Ferma 2018/*.btp.cs
+Ferma 2018/*.btm.cs
+Ferma 2018/*.odx.cs
+Ferma 2018/*.xsd.cs
