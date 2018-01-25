@@ -18,7 +18,7 @@ namespace Ferma_2018.Logic.Ferma
         public float cross_sectional_area; // площадь сечения стержня
     }
 
-    public class FermaNode
+    public class FermaNode : ICloneable
     {
         public float x;
         public float y;
@@ -28,6 +28,21 @@ namespace Ferma_2018.Logic.Ferma
 
         public float x_stress_force; // сила нагрузки по оси X
         public float y_stress_force; // сила нагрузки по оси Y
+
+        // жизненно важен...
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        // ... без клонирования, создается не объект, а ссылка на него...
+
+    }
+
+    public class FermaNodeStressCase
+    {
+        public FermaNode[] nodes;
     }
 
     public class FermaFile
@@ -50,6 +65,7 @@ namespace Ferma_2018.Logic.Ferma
 
         public FermaKernel[] kernels;
         public FermaNode[] nodes;
+        public FermaNodeStressCase[] stress_cases;
     }
 
     public class FermaFileLoader
@@ -108,7 +124,7 @@ namespace Ferma_2018.Logic.Ferma
                 }
 
                 if(active_file.nodes_count > 0)
-                {
+                {              
 
                     active_file.nodes = new FermaNode[active_file.nodes_count];
 
@@ -151,8 +167,17 @@ namespace Ferma_2018.Logic.Ferma
 
                     if(active_file.stresses_count > 0)
                     {
-                        for(short j = 0; j < active_file.stresses_count; j ++)
+                        active_file.stress_cases = new FermaNodeStressCase[active_file.stresses_count];
+
+                        for (short i = 0; i < active_file.stresses_count; i ++)
                         {
+                            active_file.stress_cases[i] = new FermaNodeStressCase();
+                            active_file.stress_cases[i].nodes = new FermaNode[active_file.nodes_count];
+                        }
+
+                        for (short j = 0; j < active_file.stresses_count; j ++)
+                        {
+        
                             for (short i = 0; i < active_file.nodes_count; i++)
                             {
                                 active_file.nodes[i].x_stress_force = ParseFloat(lines[current_line]);
@@ -160,11 +185,13 @@ namespace Ferma_2018.Logic.Ferma
 
                                 active_file.nodes[i].y_stress_force = ParseFloat(lines[current_line]);
                                 current_line++;
-                            }
-                       }
-  
-                    }
 
+                                active_file.stress_cases[j].nodes[i] = (FermaNode) active_file.nodes[i].Clone();
+                            }
+
+                        }
+
+                    }
 
                 }
 
