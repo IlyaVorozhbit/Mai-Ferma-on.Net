@@ -1,10 +1,37 @@
-﻿<Window x:Class="Ferma_2018.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018"
+        xmlns:Properties="clr-namespace:Ferma_2018.Properties" x:Class="Ferma_2018.MainWindow"
         mc:Ignorable="d"
         Title="САПР Ferma: 2018" Height="350" Width="525">
-    <Grid/>
+    <Grid>
+        <Menu x:Name="main_menu_top" Height="27" VerticalAlignment="Top" Background="White" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
+            <MenuItem Header="Проект" Height="25" Click="MenuItem_Click" BorderThickness="1,1,1,0">
+                <MenuItem Header="Создать проект" HorizontalAlignment="Left">
+                    <MenuItem Header="Ферменная конструкция"/>
+                    <MenuItem Header="ТОК"/>
+                    <MenuItem Header="Пластина"/>
+                </MenuItem>
+                <MenuItem Header="Открыть проект"/>
+                <Separator/>
+                <MenuItem x:Name="btn_exit" Header="Выход из Ferma" Click="btn_exit_click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/UI/icons/appbar.3d.x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Окна" IsEnabled="False" BorderThickness="1,1,1,0"/>
+
+        </Menu>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="29" Margin="0,27,0,0" VerticalAlignment="Top" Width="517" Background="White" BorderBrush="#FFF0F0F0" BorderThickness="0,0,0,1">
+            <MenuItem x:Name="new_ferma_btn" Header="" Height="29" Width="25" Background="White" Click="new_ferma_btn_Click">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/UI/icons/NewFerma.png"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+    </Grid>
 </Window>

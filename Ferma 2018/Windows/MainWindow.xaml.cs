@@ -24,5 +24,21 @@ namespace Ferma_2018
         {
             InitializeComponent();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_exit_click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void new_ferma_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Ferma_2018.Windows.Ferma.Ferma_form ferma_form = new Windows.Ferma.Ferma_form();
+            ferma_form.Show();
+        }
     }
 }
