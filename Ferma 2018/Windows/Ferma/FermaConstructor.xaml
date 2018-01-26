@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="Конструктор" Height="451.775" Width="300" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init">
+        Title="Конструктор" Height="482.775" Width="350" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init">
     <Grid>
-        <TabControl x:Name="tabControl">
-            <TabItem Header="Общее">
+        <TabControl x:Name="tabControl" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="-1" Background="White">
+            <TabItem Header="Общее" FontSize="10">
                 <Grid Background="White">
                     <Label x:Name="label" Content="Размерность задачи" HorizontalAlignment="Left" Height="27" Margin="7,14,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold"/>
                     <Label x:Name="label1" Content="Линейная размерность" HorizontalAlignment="Left" Height="26" Margin="7,46,0,0" VerticalAlignment="Top" Width="127" FontSize="11"/>
@@ -49,7 +49,7 @@
                     <Rectangle HorizontalAlignment="Left" Height="96" Margin="0,9,0,0" Stroke="#FFE2E2E2" VerticalAlignment="Top" Width="288" Panel.ZIndex="-1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Стержни">
+            <TabItem Header="Стержни" FontSize="10">
                 <Grid Background="White">
                     <Label x:Name="label2" Content="Число стержней" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="107"/>
                     <TextBox x:Name="kernels_count" HorizontalAlignment="Left" Height="20" Margin="122,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsReadOnly="True"/>
@@ -61,6 +61,22 @@
                     <Rectangle Fill="#FFFAFAFA" Height="99" Margin="7,9,10,0" Stroke="#FFE6E4E4" VerticalAlignment="Top" Panel.ZIndex="-1"/>
                     <DataGrid x:Name="kernels" Margin="7,124,10,10" Loaded="kernels_Loaded" MouseUp="kernels_MouseUp"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Площади" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54" Margin="0" FontSize="10">
+                <Grid Background="White">
+                    <Label x:Name="label3" Content="Число стержней" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="107"/>
+                    <TextBox x:Name="kernels_count1" HorizontalAlignment="Left" Height="20" Margin="122,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsReadOnly="True"/>
+                    <DataGrid x:Name="kernels_squares" Margin="7,50,10,10" Loaded="kernels_Loaded" MouseUp="kernels_MouseUp"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Закрепления" HorizontalAlignment="Left" Height="20" VerticalAlignment="Bottom" Width="71" Margin="0,0,-17,0" FontSize="10">
+                <Grid Background="White"/>
+            </TabItem>
+            <TabItem Header="Нагрузки" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="63" Margin="0,0,-9,0" FontSize="10">
+                <Grid Background="White"/>
+            </TabItem>
+            <TabItem Header="Узлы" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54" Margin="0" FontSize="10">
+                <Grid Background="White"/>
             </TabItem>
         </TabControl>
 
