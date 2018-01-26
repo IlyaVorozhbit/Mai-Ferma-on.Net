@@ -78,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Windows\Ferma\FermaConstructor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Ferma\Ferma_form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +95,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logic\Ferma\FermaFileLoader.cs" />
+    <Compile Include="Windows\Ferma\FermaConstructor.xaml.cs">
+      <DependentUpon>FermaConstructor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Ferma\Ferma_form.xaml.cs">
       <DependentUpon>Ferma_form.xaml</DependentUpon>
     </Compile>
@@ -127,6 +134,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\UI\icons\Constructor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\UI\icons\minus.png" />
+    <Resource Include="Resources\UI\icons\plus.png" />
+    <Resource Include="Resources\UI\icons\definitions\E.png" />
+    <Resource Include="Resources\UI\icons\definitions\q.bmp" />
     <Resource Include="Ferma_2018_Logo.ico" />
     <Content Include="Resources\UI\icons\appbar.3d.x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

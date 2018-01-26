@@ -25,6 +25,7 @@ namespace Ferma_2018.Windows.Ferma
     public partial class Ferma_form : Window
     {
         public FermaFileLoader file_loader;
+        public FermaConstructor constructor;
 
         public float width;
         public float height;
@@ -43,8 +44,11 @@ namespace Ferma_2018.Windows.Ferma
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            if (openFileDialog.ShowDialog() == true)         
+            if (openFileDialog.ShowDialog() == true)
+            {
                 openFile(openFileDialog.FileName);
+                constructor = new FermaConstructor(ActiveFile());
+            }     
             
         }
 
@@ -205,6 +209,26 @@ namespace Ferma_2018.Windows.Ferma
         private void stressCaseChange(object sender, SelectionChangedEventArgs e)
         {
             RepaintScheme();
+        }
+
+        private void buttonConstructorClick(object sender, RoutedEventArgs e)
+        {
+            if (constructor == null)
+            {
+                constructor = new FermaConstructor(ActiveFile());
+
+                constructor.Left = Width + constructor.Width / 2;
+                constructor.Top = Top;
+                constructor.Show();
+            }
+            else
+                constructor.Show();
+
+        }
+
+        private void onBeforeClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            constructor.Close();
         }
     }
 
