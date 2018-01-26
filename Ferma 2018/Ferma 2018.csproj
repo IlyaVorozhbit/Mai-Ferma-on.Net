@@ -95,6 +95,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logic\Ferma\FermaFileLoader.cs" />
+    <Compile Include="Logic\Ferma\FermaKernelGrid.cs" />
     <Compile Include="Windows\Ferma\FermaConstructor.xaml.cs">
       <DependentUpon>FermaConstructor.xaml</DependentUpon>
     </Compile>

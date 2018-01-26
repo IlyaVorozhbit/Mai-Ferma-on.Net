@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="560.372" Width="575.319" ResizeMode="CanMinimize" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" Closing="onBeforeClosing">
+        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="560.372" Width="575.319" ResizeMode="CanMinimize" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" Closing="onBeforeClosing" Initialized="Window_Initialized">
     <Grid>
 
         <Canvas x:Name="scheme" RenderTransformOrigin="0.5,0.5" Margin="44,90,36,125" Panel.ZIndex="2"/>

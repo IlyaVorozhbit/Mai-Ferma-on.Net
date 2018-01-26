@@ -26,6 +26,8 @@ namespace Ferma_2018.Windows.Ferma
     {
         public FermaFileLoader file_loader;
         public FermaConstructor constructor;
+        public List<int> drawed_kernels;
+
 
         public float width;
         public float height;
@@ -47,7 +49,7 @@ namespace Ferma_2018.Windows.Ferma
             if (openFileDialog.ShowDialog() == true)
             {
                 openFile(openFileDialog.FileName);
-                constructor = new FermaConstructor(ActiveFile());
+                constructor = new FermaConstructor(ActiveFile(), this);
             }     
             
         }
@@ -92,6 +94,18 @@ namespace Ferma_2018.Windows.Ferma
             PaintNodes();
             PaintBorders();
             LoadInfoPanelValues();
+        }
+
+        public void SelectKernel(short id)
+        {
+            Line kernel = scheme.Children[drawed_kernels[id]] as Line;
+            kernel.Stroke = Brushes.Yellow;
+        }
+
+        public void UnselectKernel(short id)
+        {
+            Line kernel = scheme.Children[drawed_kernels[id]] as Line;
+            kernel.Stroke = Brushes.Black;
         }
 
         public void LoadInfoPanelValues()
@@ -183,26 +197,31 @@ namespace Ferma_2018.Windows.Ferma
         {
 
             Line myLine;
+            short i = 0;
 
             foreach (FermaKernel kernel in file_loader.active_file.kernels)
             {
-                    myLine = new Line();
-                    myLine.Stroke = Brushes.Black;
+                myLine = new Line();
+                myLine.Stroke = Brushes.Black;
 
-                    myLine.X1 = file_loader.active_file.nodes[kernel.start_node - 1].x + 4;
-                    myLine.X2 = file_loader.active_file.nodes[kernel.end_node - 1].x + 4;
-                    myLine.Y1 = height - file_loader.active_file.nodes[kernel.start_node - 1].y - 3;
-                    myLine.Y2 = height - file_loader.active_file.nodes[kernel.end_node - 1].y - 3;
+                myLine.X1 = file_loader.active_file.nodes[kernel.start_node - 1].x + 4;
+                myLine.X2 = file_loader.active_file.nodes[kernel.end_node - 1].x + 4;
+                myLine.Y1 = height - file_loader.active_file.nodes[kernel.start_node - 1].y - 3;
+                myLine.Y2 = height - file_loader.active_file.nodes[kernel.end_node - 1].y - 3;
 
-                    myLine.ToolTip =
-                        "X1: " + myLine.X1 + ", X2: " + myLine.X2 + "\n" +
-                        "Y1: " + myLine.Y1 + ", Y2: " + myLine.Y2 + "\n" +
-                        "start_node: " + (kernel.start_node - 1) +
-                        "end_node: " + (kernel.end_node - 1);
+                myLine.ToolTip =
+                    "id: " + (i == 0 ? ActiveFile().kernels_count : i) + "\n" +
+                    "X1: " + myLine.X1 + ", X2: " + myLine.X2 + "\n" +
+                    "Y1: " + myLine.Y1 + ", Y2: " + myLine.Y2 + "\n" +
+                    "start_node: " + (kernel.start_node - 1)  + "\n" +
+                    "end_node: " + (kernel.end_node - 1);
 
-                    myLine.StrokeThickness = 2;
+                myLine.StrokeThickness = 2;
 
-                    scheme.Children.Add(myLine);
+                scheme.Children.Add(myLine);
+
+                drawed_kernels.Add(scheme.Children.Count - 1);
+                i++;
             }
         }
 
@@ -215,7 +234,7 @@ namespace Ferma_2018.Windows.Ferma
         {
             if (constructor == null)
             {
-                constructor = new FermaConstructor(ActiveFile());
+                constructor = new FermaConstructor(ActiveFile(), this);
 
                 constructor.Left = Width + constructor.Width / 2;
                 constructor.Top = Top;
@@ -229,6 +248,11 @@ namespace Ferma_2018.Windows.Ferma
         private void onBeforeClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             constructor.Close();
+        }
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            drawed_kernels = new List<int>();
         }
     }
 
