@@ -29,15 +29,10 @@ namespace Ferma_2018.Logic.Ferma
         public float x_stress_force; // сила нагрузки по оси X
         public float y_stress_force; // сила нагрузки по оси Y
 
-        // жизненно важен...
-
         public object Clone()
         {
             return this.MemberwiseClone();
         }
-
-        // ... без клонирования, создается не объект, а ссылка на него...
-
     }
 
     public class FermaNodeStressCase

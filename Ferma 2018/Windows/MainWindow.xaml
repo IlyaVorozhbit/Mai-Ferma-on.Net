@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:Ferma_2018"
         xmlns:Properties="clr-namespace:Ferma_2018.Properties" x:Class="Ferma_2018.MainWindow"
         mc:Ignorable="d"
-        Title="САПР Ferma: 2018" Height="350" Width="525">
+        Title="САПР Ferma: 2018" Height="211" Width="389" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico">
     <Grid>
         <Menu x:Name="main_menu_top" Height="27" VerticalAlignment="Top" Background="White" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
             <MenuItem Header="Проект" Height="25" Click="MenuItem_Click" BorderThickness="1,1,1,0">
-                <MenuItem Header="Создать проект" HorizontalAlignment="Left">
+                <MenuItem Header="Создать проект" HorizontalAlignment="Left" IsEnabled="False">
                     <MenuItem Header="Ферменная конструкция"/>
                     <MenuItem Header="ТОК"/>
                     <MenuItem Header="Пластина"/>
                 </MenuItem>
-                <MenuItem Header="Открыть проект"/>
+                <MenuItem x:Name="btn_open" Header="Открыть проект" Click="btn_open_click"/>
                 <Separator/>
                 <MenuItem x:Name="btn_exit" Header="Выход из Ferma" Click="btn_exit_click">
                     <MenuItem.Icon>
@@ -26,7 +26,7 @@
             <MenuItem Header="Окна" IsEnabled="False" BorderThickness="1,1,1,0"/>
 
         </Menu>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="29" Margin="0,27,0,0" VerticalAlignment="Top" Width="517" Background="White" BorderBrush="#FFF0F0F0" BorderThickness="0,0,0,1">
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="29" Margin="0,27,0,0" VerticalAlignment="Top" Width="381" Background="White" BorderBrush="#FFF0F0F0" BorderThickness="0,0,0,1" IsEnabled="False">
             <MenuItem x:Name="new_ferma_btn" Header="" Height="29" Width="25" Background="White" Click="new_ferma_btn_Click">
                 <MenuItem.Icon>
                     <Image Source="/Resources/UI/icons/NewFerma.png"/>

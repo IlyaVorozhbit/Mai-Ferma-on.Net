@@ -5,12 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="452.766" Width="575.319">
+        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="560.372" Width="575.319" ResizeMode="CanMinimize" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico">
     <Grid>
-        <Button x:Name="buttonDrawNode" Content="Button" HorizontalAlignment="Left" Height="26" Margin="40,369,0,0" VerticalAlignment="Top" Width="68" Click="buttonDrawNode_Click"/>
 
-        <Canvas x:Name="scheme" Height="292" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="40,24,40,0" Panel.ZIndex="2"/>
-        
-        <Canvas x:Name="borders" HorizontalAlignment="Left" Height="328" Margin="19,10,0,0" VerticalAlignment="Top" Width="522"/>
+        <Canvas x:Name="scheme" RenderTransformOrigin="0.5,0.5" Margin="44,90,36,125" Panel.ZIndex="2"/>
+
+        <Canvas x:Name="borders" Margin="23,76,22,0" Height="372" VerticalAlignment="Top"/>
+        <ToolBar x:Name="toolBar" Height="33" VerticalAlignment="Top" Margin="0,26,0,0">
+
+            <Button x:Name="buttonDrawNode" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="25" Click="buttonDrawNode_Click" Margin="0,3,0,0" Background="White">
+                <DockPanel>
+                    <Image Source="/Resources/UI/icons/Open.png"/>
+                </DockPanel>
+            </Button>
+
+
+            <ComboBox x:Name="stress_case" HorizontalAlignment="Left" Height="23" Margin="4,3,0,0" VerticalAlignment="Top" Width="148" BorderBrush="White" IsEnabled="False" SelectionChanged="stressCaseChange">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+        </ToolBar>
+        <Grid Margin="0,464,0,0">
+            <Image Source="/Resources/UI/icons/definitions/ro.bmp" x:Name="image_ro" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="24" Height="13"/>
+            <Label x:Name="ro_label" Content="- - -" HorizontalAlignment="Left" Height="24" Margin="39,6,0,0" VerticalAlignment="Top" Width="72" Background="White" FontSize="11"/>
+
+            <Image Source="/Ferma 2018;component/Resources/UI/icons/definitions/sg.bmp" x:Name="image_sigma" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="26" Height="13" RenderTransformOrigin="1.375,1.308"/>
+            <Label x:Name="sigma_label" Content="- - -" HorizontalAlignment="Left" Height="24" Margin="39,33,0,0" VerticalAlignment="Top" Width="72" Background="White" FontSize="11"/>
+        </Grid>
+        <ToolBar x:Name="toolBar1" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="569">
+            <Label x:Name="filename_label" Content="Откройте файл для начала работы" Height="24" Margin="0,-2,0,0" VerticalAlignment="Top" Width="537" FontSize="11" BorderThickness="0"/>
+        </ToolBar>
     </Grid>
 </Window>

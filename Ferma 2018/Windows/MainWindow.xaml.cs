@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,19 @@ namespace Ferma_2018
         private void btn_exit_click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void btn_open_click(object sender, RoutedEventArgs e)
+        {
+            Ferma_2018.Windows.Ferma.Ferma_form ferma_form = new Windows.Ferma.Ferma_form();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ferma_form.openFile(openFileDialog.FileName);
+                ferma_form.Show();
+            }
+            
         }
 
         private void new_ferma_btn_Click(object sender, RoutedEventArgs e)
