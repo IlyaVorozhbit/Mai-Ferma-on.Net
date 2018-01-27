@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Ferma_2018"
         xmlns:Properties="clr-namespace:Ferma_2018.Properties" x:Class="Ferma_2018.MainWindow"
         mc:Ignorable="d"
-        Title="САПР Ferma: 2018" Height="211" Width="389" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico">
+        Title="САПР Ferma: 2018" Height="211" Width="389" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" Initialized="Window_Initialized" Closing="Window_Closing">
     <Grid>
         <Menu x:Name="main_menu_top" Height="27" VerticalAlignment="Top" Background="White" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
-            <MenuItem Header="Проект" Height="25" Click="MenuItem_Click" BorderThickness="1,1,1,0">
+            <MenuItem x:Name="project_menu" Header="Проект" Height="25" Click="MenuItem_Click" BorderThickness="1,1,1,0">
                 <MenuItem Header="Создать проект" HorizontalAlignment="Left" IsEnabled="False">
                     <MenuItem Header="Ферменная конструкция"/>
                     <MenuItem Header="ТОК"/>
