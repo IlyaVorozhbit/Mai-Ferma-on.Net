@@ -33,5 +33,15 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
+        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="109" Margin="10,61,0,0" VerticalAlignment="Top" Width="361" TextChanged="richTextBox_TextChanged" Block.TextAlignment="Center" FontSize="26" BorderBrush="White" IsEnabled="False">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="This is developer alpha "/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="of Ferma: 2018"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>

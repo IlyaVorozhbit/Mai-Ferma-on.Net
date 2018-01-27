@@ -28,6 +28,8 @@ namespace Ferma_2018.Windows.Ferma
         public FermaConstructor constructor;
         public List<int> drawed_kernels;
 
+        public bool constructor_shows = false;
+
 
         public float width;
         public float height;
@@ -45,11 +47,16 @@ namespace Ferma_2018.Windows.Ferma
         private void buttonDrawNode_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Проект Ferma (*.frm)|*.frm";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 openFile(openFileDialog.FileName);
-                constructor = new FermaConstructor(ActiveFile(), this);
+
+                if (constructor == null)
+                    constructor = new FermaConstructor(ActiveFile(), this);
+                else
+                    RepaintConstructor();
             }     
             
         }
@@ -70,6 +77,9 @@ namespace Ferma_2018.Windows.Ferma
             scheme.Width = width;
             scheme.Height = height;
 
+            stress_case.Items.Clear();
+            stress_case.SelectedIndex = -1;
+
             if (file_loader.active_file.stresses_count > 0)
             {
                 short i = 1;
@@ -79,16 +89,25 @@ namespace Ferma_2018.Windows.Ferma
                     i++;
                 }
 
-                stress_case.SelectedIndex = 0;
-                stress_case.IsEnabled = true;
+                if(stress_case.Items.Count > 0)
+                {
+                    stress_case.SelectedIndex = 0;
+                    stress_case.IsEnabled = true;
+                }
             }
 
             RepaintScheme();
         }
 
+        public void RepaintConstructor()
+        {
+            constructor.Repaint(ActiveFile());
+        }
+
         public void RepaintScheme()
         {
             scheme.Children.Clear();
+            borders.Children.Clear();
             PaintKernels();
 
             PaintNodes();
@@ -98,13 +117,13 @@ namespace Ferma_2018.Windows.Ferma
 
         public void SelectKernel(short id)
         {
-            Line kernel = scheme.Children[drawed_kernels[id]] as Line;
+            Line kernel = scheme.Children[drawed_kernels[id-1]] as Line;
             kernel.Stroke = Brushes.Yellow;
         }
 
         public void UnselectKernel(short id)
         {
-            Line kernel = scheme.Children[drawed_kernels[id]] as Line;
+            Line kernel = scheme.Children[drawed_kernels[id-1]] as Line;
             kernel.Stroke = Brushes.Black;
         }
 
@@ -116,9 +135,20 @@ namespace Ferma_2018.Windows.Ferma
         // Рисуем узлы
         public void PaintNodes()
         {
-            short i = 0;
+            short i = 1;
 
-            foreach (FermaNode node in file_loader.active_file.stress_cases[stress_case.SelectedIndex].nodes)
+
+            int index = stress_case.SelectedIndex;
+
+            // если количество случаев нагрузки больше 0, 
+            // то тогда после загрузки нового файла у нас получается SelectedIndex == -1
+            // соответственно - выбираем 0 индекс или 1 случай нагрузки
+
+            if (file_loader.active_file.stress_cases.Length > 0)
+                if (stress_case.SelectedIndex == -1)
+                    index = 0;
+
+            foreach (FermaNode node in file_loader.active_file.stress_cases[index].nodes)
             {
                 Ellipse point = new Ellipse();
                 point.Height = 10;
@@ -195,26 +225,27 @@ namespace Ferma_2018.Windows.Ferma
 
         public void PaintKernels()
         {
-
             Line myLine;
             short i = 0;
+
+            drawed_kernels.Clear();
 
             foreach (FermaKernel kernel in file_loader.active_file.kernels)
             {
                 myLine = new Line();
                 myLine.Stroke = Brushes.Black;
 
-                myLine.X1 = file_loader.active_file.nodes[kernel.start_node - 1].x + 4;
-                myLine.X2 = file_loader.active_file.nodes[kernel.end_node - 1].x + 4;
-                myLine.Y1 = height - file_loader.active_file.nodes[kernel.start_node - 1].y - 3;
-                myLine.Y2 = height - file_loader.active_file.nodes[kernel.end_node - 1].y - 3;
+                myLine.X1 = file_loader.active_file.nodes[kernel.start_node -1].x + 4;
+                myLine.X2 = file_loader.active_file.nodes[kernel.end_node -1].x + 4;
+                myLine.Y1 = height - file_loader.active_file.nodes[kernel.start_node -1].y - 3;
+                myLine.Y2 = height - file_loader.active_file.nodes[kernel.end_node -1].y - 3;
 
                 myLine.ToolTip =
-                    "id: " + (i == 0 ? ActiveFile().kernels_count : i) + "\n" +
+                    "id: " + (i+1) + "\n" +
                     "X1: " + myLine.X1 + ", X2: " + myLine.X2 + "\n" +
                     "Y1: " + myLine.Y1 + ", Y2: " + myLine.Y2 + "\n" +
-                    "start_node: " + (kernel.start_node - 1)  + "\n" +
-                    "end_node: " + (kernel.end_node - 1);
+                    "start_node: " + (kernel.start_node)  + "\n" +
+                    "end_node: " + (kernel.end_node);
 
                 myLine.StrokeThickness = 2;
 
@@ -225,6 +256,12 @@ namespace Ferma_2018.Windows.Ferma
             }
         }
 
+        public void ChangeSchemeScale(float width, float height)
+        {
+            scheme.Width = width;
+            scheme.Height = height;
+        }
+
         private void stressCaseChange(object sender, SelectionChangedEventArgs e)
         {
             RepaintScheme();
@@ -232,22 +269,26 @@ namespace Ferma_2018.Windows.Ferma
 
         private void buttonConstructorClick(object sender, RoutedEventArgs e)
         {
+            constructor_shows = !constructor_shows;
+
             if (constructor == null)
             {
                 constructor = new FermaConstructor(ActiveFile(), this);
 
-                constructor.Left = Width + constructor.Width / 2;
+                constructor.Left = Width+Left - 15;
                 constructor.Top = Top;
-                constructor.Show();
             }
-            else
-                constructor.Show();
 
+            if (constructor_shows)
+                constructor.Show();
+            else
+                constructor.Hide();
         }
 
         private void onBeforeClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            constructor.Close();
+            if(constructor != null)
+                constructor.Close();
         }
 
         private void Window_Initialized(object sender, EventArgs e)

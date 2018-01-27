@@ -34,26 +34,38 @@ namespace Ferma_2018.Windows.Ferma
             InitializeComponent();
         }
 
+        public void Repaint(FermaFile active_file)
+        {
+            this.active_file = active_file;
+            LoadActiveFileParams();
+            LoadActiveFileKernelsToGrid();
+        }
+
         private void onBeforeClosing(object sender, CancelEventArgs e)
         {
             this.Hide();
             e.Cancel = true;
         }
 
-        private void Init(object sender, EventArgs e)
+        private void LoadActiveFileParams()
         {
             x_dimension_of_project_area.Text = active_file.x_dimension_of_project_area.ToString();
             y_dimension_of_project_area.Text = active_file.y_dimension_of_project_area.ToString();
 
             kernels_count.Text = active_file.kernels_count.ToString();
-            nodes_count.Text   = active_file.nodes_count.ToString();
+            nodes_count.Text = active_file.nodes_count.ToString();
 
             modul_uprugosti.Text = active_file.elastic_modulus.ToString();
             density.Text = active_file.material_density.ToString();
             stress.Text = active_file.stresses_modulus.ToString();
         }
 
-        private void kernels_Loaded(object sender, RoutedEventArgs e)
+        private void Init(object sender, EventArgs e)
+        {
+            LoadActiveFileParams();
+        }
+
+        private void LoadActiveFileKernelsToGrid()
         {
             List<FermaKernelGridTable> result = new List<FermaKernelGridTable>(active_file.kernels_count);
 
@@ -65,7 +77,11 @@ namespace Ferma_2018.Windows.Ferma
                 id++;
             }
             kernels.ItemsSource = result;
+        }
 
+        private void kernels_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadActiveFileKernelsToGrid();
         }
 
         private void kernels_MouseUp(object sender, MouseButtonEventArgs e)
@@ -92,6 +108,14 @@ namespace Ferma_2018.Windows.Ferma
         {
             ferma_form.UnselectKernel(id);
             kernel_selected = false;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            /*ferma_form.ChangeSchemeScale(
+                float.Parse(x_dimension_of_project_area.Text), 
+                float.Parse(y_dimension_of_project_area.Text)
+            );*/
         }
     }
 

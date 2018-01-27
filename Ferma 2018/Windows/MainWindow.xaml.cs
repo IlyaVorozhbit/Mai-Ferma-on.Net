@@ -53,6 +53,8 @@ namespace Ferma_2018
         {
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Проект Ferma (*.frm)|*.frm";
+
             if (openFileDialog.ShowDialog() == true)
             {
                 OpenFermaWithFile(openFileDialog.FileName);
@@ -209,7 +211,14 @@ namespace Ferma_2018
             sqlite_main.Connection().Close();
 
             foreach(Ferma_2018.Windows.Ferma.Ferma_form form in ferma_forms)          
-                form.Close();       
+                form.Close();
+
+            Environment.Exit(1);
+        }
+
+        private void richTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

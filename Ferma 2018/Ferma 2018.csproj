@@ -158,11 +158,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\UI\icons\Constructor.png" />
     <Content Include="sqlite3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\UI\icons\Constructor.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\UI\icons\minus.png" />
     <Resource Include="Resources\UI\icons\plus.png" />

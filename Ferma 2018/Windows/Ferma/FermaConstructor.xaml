@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="Конструктор" Height="482.775" Width="350" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init">
+        Title="Конструктор" Height="482.775" Width="355" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init">
     <Grid>
         <TabControl x:Name="tabControl" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="-1" Background="White">
             <TabItem Header="Общее" FontSize="10">
@@ -20,7 +20,7 @@
                     <TextBox x:Name="x_dimension_of_project_area" HorizontalAlignment="Left" Height="18" Margin="139,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
                     <Label x:Name="label1_Copy2" Content="Размер по Y" HorizontalAlignment="Left" Height="26" Margin="7,179,0,0" VerticalAlignment="Top" Width="127" FontSize="11"/>
                     <TextBox x:Name="y_dimension_of_project_area" HorizontalAlignment="Left" Height="18" Margin="139,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-                    <Button x:Name="button" Content="Применить" HorizontalAlignment="Left" Height="50" Margin="201,150,0,0" VerticalAlignment="Top" Width="77" Background="White" BorderBrush="#FFCDCDCD"/>
+                    <Button x:Name="button" Content="Применить" HorizontalAlignment="Left" Height="50" Margin="201,150,0,0" VerticalAlignment="Top" Width="77" Background="White" BorderBrush="#FFCDCDCD" Click="button_Click"/>
                     <Label x:Name="label_Copy1" Content="Характеристики материала" HorizontalAlignment="Left" Height="27" Margin="7,222,0,0" VerticalAlignment="Top" Width="184" FontWeight="Bold"/>
                     <Label x:Name="label1_Copy3" Content="Материал" HorizontalAlignment="Left" Height="26" Margin="10,249,0,0" VerticalAlignment="Top" Width="61" FontSize="11"/>
                     <ComboBox x:Name="material" HorizontalAlignment="Left" Height="21" Margin="82,254,0,0" VerticalAlignment="Top" Width="91" SelectedIndex="0" FontSize="11"/>
@@ -70,12 +70,6 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Закрепления" HorizontalAlignment="Left" Height="20" VerticalAlignment="Bottom" Width="71" Margin="0,0,-17,0" FontSize="10">
-                <Grid Background="White"/>
-            </TabItem>
-            <TabItem Header="Нагрузки" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="63" Margin="0,0,-9,0" FontSize="10">
-                <Grid Background="White"/>
-            </TabItem>
-            <TabItem Header="Узлы" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54" Margin="0" FontSize="10">
                 <Grid Background="White"/>
             </TabItem>
         </TabControl>
