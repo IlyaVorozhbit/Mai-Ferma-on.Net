@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="Конструктор" Height="482.775" Width="355" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init">
+        Title="Конструктор" Height="482.775" Width="355" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" ResizeMode="NoResize" Closing="onBeforeClosing" Initialized="Init" Loaded="Window_Loaded">
     <Grid>
         <TabControl x:Name="tabControl" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="-1" Background="White">
             <TabItem Header="Общее" FontSize="10">
                 <Grid Background="White">
                     <Label x:Name="label" Content="Размерность задачи" HorizontalAlignment="Left" Height="27" Margin="7,14,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold"/>
                     <Label x:Name="label1" Content="Линейная размерность" HorizontalAlignment="Left" Height="26" Margin="7,46,0,0" VerticalAlignment="Top" Width="127" FontSize="11"/>
-                    <ComboBox x:Name="linear_dimension" HorizontalAlignment="Left" Height="21" Margin="139,48,0,0" VerticalAlignment="Top" Width="52" SelectedIndex="0" FontSize="11"/>
+                    <ComboBox x:Name="linear_dimension" HorizontalAlignment="Left" Height="21" Margin="139,48,0,0" VerticalAlignment="Top" Width="52" SelectedIndex="0" FontSize="11" SelectionChanged="linear_dimension_SelectionChanged">
+                        <ComboBoxItem Content="мм"/>
+                        <ComboBoxItem Content="см"/>
+                        <ComboBoxItem Content="м"/>
+                    </ComboBox>
                     <Label x:Name="label1_Copy" Content="Размерность сил" HorizontalAlignment="Left" Height="26" Margin="7,72,0,0" VerticalAlignment="Top" Width="118" FontSize="11"/>
-                    <ComboBox x:Name="dimension_of_forces" HorizontalAlignment="Left" Height="21" Margin="139,77,0,0" VerticalAlignment="Top" Width="52" SelectedIndex="0" FontSize="11" BorderBrush="#FFCDCDCD"/>
+                    <ComboBox x:Name="dimension_of_forces" HorizontalAlignment="Left" Height="21" Margin="139,77,0,0" VerticalAlignment="Top" Width="52" SelectedIndex="0" FontSize="11" BorderBrush="#FFCDCDCD" SelectionChanged="dimension_of_forces_SelectionChanged">
+                        <ComboBoxItem Content="Н"/>
+                        <ComboBoxItem Content="кГ"/>
+                    </ComboBox>
                     <Label x:Name="label_Copy" Content="Размер области" HorizontalAlignment="Left" Height="27" Margin="7,115,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold"/>
                     <Label x:Name="label1_Copy1" Content="Размер по X" HorizontalAlignment="Left" Height="26" Margin="7,147,0,0" VerticalAlignment="Top" Width="127" FontSize="11"/>
                     <TextBox x:Name="x_dimension_of_project_area" HorizontalAlignment="Left" Height="18" Margin="139,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>

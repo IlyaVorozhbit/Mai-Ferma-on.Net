@@ -26,6 +26,7 @@ namespace Ferma_2018.Windows.Ferma
         short selected_kernel;
 
         bool kernel_selected = false;
+        bool is_it_init = true;
 
         public FermaConstructor(FermaFile active_file, Ferma_form ferma_form)
         {
@@ -58,10 +59,37 @@ namespace Ferma_2018.Windows.Ferma
             modul_uprugosti.Text = active_file.elastic_modulus.ToString();
             density.Text = active_file.material_density.ToString();
             stress.Text = active_file.stresses_modulus.ToString();
+
+            switch (active_file.linear_dimension)
+            {
+                case "мм":
+                    linear_dimension.SelectedIndex = 0;
+                    break;
+
+                case "см":
+                    linear_dimension.SelectedIndex = 1;
+                    break;
+
+                case "М":
+                    linear_dimension.SelectedIndex = 2;
+                    break;
+            }
+
+            switch (active_file.dimension_of_forces)
+            {
+                case "Н":
+                    dimension_of_forces.SelectedIndex = 0;
+                    break;
+
+                case "кГ":
+                    dimension_of_forces.SelectedIndex = 1;
+                    break;
+            }
         }
 
         private void Init(object sender, EventArgs e)
         {
+            button.Visibility = Visibility.Hidden;
             LoadActiveFileParams();
         }
 
@@ -116,6 +144,23 @@ namespace Ferma_2018.Windows.Ferma
                 float.Parse(x_dimension_of_project_area.Text), 
                 float.Parse(y_dimension_of_project_area.Text)
             );*/
+        }
+
+        private void linear_dimension_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(!is_it_init)
+                active_file.linear_dimension = (linear_dimension.Items[linear_dimension.SelectedIndex] as ComboBoxItem).Content.ToString();
+        }
+
+        private void dimension_of_forces_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!is_it_init)
+                active_file.dimension_of_forces = (dimension_of_forces.Items[dimension_of_forces.SelectedIndex] as ComboBoxItem).Content.ToString();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            is_it_init = false;
         }
     }
 
