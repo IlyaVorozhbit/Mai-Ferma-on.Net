@@ -44,7 +44,7 @@
                         </DockPanel>
                     </Button>
 
-                    <Rectangle HorizontalAlignment="Left" Height="224" Margin="0,219,0,0" Stroke="#FFE2E2E2" VerticalAlignment="Top" Width="288" Panel.ZIndex="-1"/>
+                    <Rectangle HorizontalAlignment="Left" Height="207" Margin="0,219,0,0" Stroke="#FFE2E2E2" VerticalAlignment="Top" Width="288" Panel.ZIndex="-1"/>
                     <Rectangle HorizontalAlignment="Left" Height="104" Margin="0,110,0,0" Stroke="#FFE2E2E2" VerticalAlignment="Top" Width="288" Panel.ZIndex="-1"/>
                     <Rectangle HorizontalAlignment="Left" Height="96" Margin="0,9,0,0" Stroke="#FFE2E2E2" VerticalAlignment="Top" Width="288" Panel.ZIndex="-1"/>
                 </Grid>
@@ -59,7 +59,7 @@
                     <Button x:Name="btn_kernel_add" Content="Добавить" HorizontalAlignment="Left" Height="24" Margin="122,75,0,0" VerticalAlignment="Top" Width="68" BorderBrush="#FFCDCDCD" Background="White"/>
                     <Button x:Name="btn_kernel_delete" Content="Удалить" HorizontalAlignment="Left" Height="24" Margin="200,75,0,0" VerticalAlignment="Top" Width="68" BorderBrush="#FFCDCDCD" Background="White"/>
                     <Rectangle Fill="#FFFAFAFA" Height="99" Margin="7,9,10,0" Stroke="#FFE6E4E4" VerticalAlignment="Top" Panel.ZIndex="-1"/>
-                    <DataGrid x:Name="kernels" Margin="7,124,10,10" Loaded="kernels_Loaded" MouseUp="kernels_MouseUp"/>
+                    <DataGrid x:Name="kernels" Margin="7,124,10,10" Loaded="kernels_Loaded" MouseUp="kernels_MouseUp" IsReadOnly="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Площади" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54" Margin="0" FontSize="10">
