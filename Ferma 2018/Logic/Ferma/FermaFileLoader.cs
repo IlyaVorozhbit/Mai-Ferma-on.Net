@@ -76,12 +76,9 @@ namespace Ferma_2018.Logic.Ferma
         public void Load(string filename)
         {
     
-            //TODO: хз как читать кодировку, правильно, файла, поэтому размерности 
-            //      считываются через одно место...
-
             if (File.Exists(filename))
             {
-                string[] lines = System.IO.File.ReadAllLines(filename);
+                string[] lines = System.IO.File.ReadAllLines(filename, Encoding.Default);
 
                 active_file = new FermaFile();
 
