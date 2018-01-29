@@ -10,7 +10,7 @@
 
         <Canvas x:Name="scheme" RenderTransformOrigin="0.5,0.5" Margin="44,90,36,125" Panel.ZIndex="2"/>
 
-        <Canvas x:Name="borders" Margin="23,76,22,0" Height="372" VerticalAlignment="Top"/>
+        <Canvas x:Name="borders" Margin="23,76,22,0" Height="372" VerticalAlignment="Top" Background="White"/>
         <ToolBar x:Name="toolBar" Height="45" VerticalAlignment="Top" Margin="0,26,0,0" Background="White" BorderBrush="#FFB6B6B6" BorderThickness="0,1">
 
             <Button x:Name="buttonDrawNode" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="39" Click="buttonDrawNode_Click" Margin="0,2,0,0" Background="White">
@@ -32,7 +32,7 @@
                 </ComboBox.Background>
             </ComboBox>
         </ToolBar>
-        <Grid Margin="0,464,0,0">
+        <Grid x:Name="ferma_stats_panel" Margin="0,464,0,0">
             <Image Source="/Resources/UI/icons/definitions/ro.bmp" x:Name="image_ro" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="24" Height="13"/>
             <Label x:Name="ro_label" Content="- - -" HorizontalAlignment="Left" Height="24" Margin="39,6,0,0" VerticalAlignment="Top" Width="72" Background="White" FontSize="11"/>
 

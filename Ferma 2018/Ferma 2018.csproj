@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Logic\Ferma\FermaFileLoader.cs" />
     <Compile Include="Logic\Ferma\FermaKernelGrid.cs" />
+    <Compile Include="Logic\Ferma\FermaWindowTools.cs" />
     <Compile Include="Logic\SQLite\Models\Misc\LatestFiles.cs" />
     <Compile Include="Logic\SQLite\SQLiteMain.cs" />
     <Compile Include="SQLite.cs" />

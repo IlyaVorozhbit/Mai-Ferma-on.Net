@@ -19,17 +19,21 @@ using System.Globalization;
 
 namespace Ferma_2018.Windows.Ferma
 {
-    /// <summary>
-    /// Interaction logic for Ferma_form.xaml
-    /// </summary>
+
     public partial class Ferma_form : Window
     {
         public FermaFileLoader file_loader;
         public FermaConstructor constructor;
         public List<int> drawed_kernels;
 
-        public bool constructor_shows = false;
+        public float difference_after_changing_y = 0f;
+        public float difference_after_changing_x = 0f;
+        public bool is_height_larger_than_earlier = false;
+        public bool is_width_larger_than_earlier = false;
 
+        public float initial_y_scale = 0f;
+
+        public bool constructor_shows = false;
 
         public float width;
         public float height;
@@ -39,7 +43,7 @@ namespace Ferma_2018.Windows.Ferma
             InitializeComponent();
         }
 
-        private FermaFile ActiveFile()
+        public FermaFile ActiveFile()
         {
             return file_loader.active_file;
         }
@@ -70,6 +74,8 @@ namespace Ferma_2018.Windows.Ferma
 
             float width = file_loader.active_file.x_dimension_of_project_area;
             float height = file_loader.active_file.y_dimension_of_project_area;
+
+            initial_y_scale = height;
 
             this.width = width;
             this.height = height;
@@ -175,7 +181,7 @@ namespace Ferma_2018.Windows.Ferma
 
                 Canvas.SetLeft(point, node.x);
                 Canvas.SetBottom(point, node.y);
-
+                
                 scheme.Children.Add(point);
                 i++;
             }
@@ -184,82 +190,198 @@ namespace Ferma_2018.Windows.Ferma
         // Рисуем цифры для осей
         public void PaintBorders()
         {
+
             for (short i = 0; i <= height; i++)
             {
                 if (i % 50 == 0)
                 {
                     TextBlock textBlock = new TextBlock();
-                    textBlock.Text = i.ToString() + ".00";
+                    textBlock.Text = (height-i).ToString() + ".00";
                     textBlock.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
-                    Canvas.SetLeft(textBlock, 5);
-                    Canvas.SetBottom(textBlock, i + 54);
+                    textBlock.RenderTransform = new TranslateTransform
+                    {
+                        X = 53,
+                        Y = i + 5
+                    };
 
-                    Line myLine = new Line();
-                    myLine.Stroke = Brushes.Black;
+                    Line line_y = new Line();
 
-                    myLine.X1 = 45;
-                    myLine.X2 = 60;
-                    myLine.Y1 = i + 12;
-                    myLine.Y2 = i + 12;
+                    line_y.Stroke = Brushes.Black;
 
-                    myLine.StrokeThickness = 2;
+                    line_y.X1 = 93;
+                    line_y.X2 = 108;
+                    line_y.Y1 = i + 12;
+                    line_y.Y2 = i + 12;
 
-                    borders.Children.Add(myLine);
+                    line_y.StrokeThickness = 2;
+
+                    borders.Children.Add(line_y);
                     borders.Children.Add(textBlock);
                 }
 
-                if (i % 75 == 0 && i != 0)
+            }
+
+            for (short i = 0; i<= width; i++)
+            {
+
+                if (i % 75 == 0)
                 {
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = i.ToString() + ".00";
                     textBlock.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
-                    Canvas.SetLeft(textBlock, i + 100);
-                    Canvas.SetBottom(textBlock, 0);
-
+                    textBlock.RenderTransform = new TranslateTransform
+                    {
+                        X = i + 100,
+                        Y = height + 50
+                    };
                     borders.Children.Add(textBlock);
+
+                    Line line_x = new Line();
+
+                    line_x.Stroke = Brushes.Black;
+
+                    line_x.X1 = i + 99 + textBlock.Text.Length * 2.6;
+                    line_x.X2 = i + 99 + textBlock.Text.Length * 2.6;
+                    line_x.Y1 = height + 35;
+                    line_x.Y2 = height + 50;
+
+                    line_x.StrokeThickness = 2;
+
+                    borders.Children.Add(line_x);
                 }
             }
         }
 
         public void PaintKernels()
         {
-            Line myLine;
+            Line kernel_line;
             short i = 0;
 
             drawed_kernels.Clear();
 
             foreach (FermaKernel kernel in file_loader.active_file.kernels)
             {
-                myLine = new Line();
-                myLine.Stroke = Brushes.Black;
+                kernel_line = new Line();
+                kernel_line.Stroke = Brushes.Black;
 
-                myLine.X1 = file_loader.active_file.nodes[kernel.start_node -1].x + 4;
-                myLine.X2 = file_loader.active_file.nodes[kernel.end_node -1].x + 4;
-                myLine.Y1 = height - file_loader.active_file.nodes[kernel.start_node -1].y - 3;
-                myLine.Y2 = height - file_loader.active_file.nodes[kernel.end_node -1].y - 3;
+                kernel_line.X1 = file_loader.active_file.nodes[kernel.start_node -1].x + 4;
+                kernel_line.X2 = file_loader.active_file.nodes[kernel.end_node -1].x + 4;
 
-                myLine.ToolTip =
+                kernel_line.Y1 = height - file_loader.active_file.nodes[kernel.start_node - 1].y - 3;
+                kernel_line.Y2 = height - file_loader.active_file.nodes[kernel.end_node - 1].y - 3;
+
+
+                kernel_line.ToolTip =
                     "id: " + (i+1) + "\n" +
-                    "X1: " + myLine.X1 + ", X2: " + myLine.X2 + "\n" +
-                    "Y1: " + myLine.Y1 + ", Y2: " + myLine.Y2 + "\n" +
+                    "X1: " + kernel_line.X1 + ", X2: " + kernel_line.X2 + "\n" +
+                    "Y1: " + kernel_line.Y1 + ", Y2: " + kernel_line.Y2 + "\n" +
                     "start_node: " + (kernel.start_node)  + "\n" +
                     "end_node: " + (kernel.end_node);
 
-                myLine.StrokeThickness = 2;
+                kernel_line.StrokeThickness = 2;
 
-                scheme.Children.Add(myLine);
+                scheme.Children.Add(kernel_line);
 
                 drawed_kernels.Add(scheme.Children.Count - 1);
                 i++;
             }
         }
 
-        public void ChangeSchemeScale(float width, float height)
+        public bool ChangeSchemeScale(float width, float height)
         {
-            scheme.Width = width;
-            scheme.Height = height;
+            if (width <= 0 || height <= 0)
+            {
+                MessageBox.Show(
+                     "Введены некорректные значения ширины или высоты области.\n\nЗначение ширины и высоты должны быть положительны.",
+                     "Ошибка изменения области",
+                     System.Windows.MessageBoxButton.OK,
+                     System.Windows.MessageBoxImage.Error
+                 );
+
+                return false;
+            }
+            else
+            {
+                this.height = height;
+                this.width = width;
+
+                if (ActiveFile().y_dimension_of_project_area > height)
+                {
+                    is_height_larger_than_earlier = false;
+                    difference_after_changing_y = ActiveFile().y_dimension_of_project_area - height;
+                }
+                else
+                {
+                    is_height_larger_than_earlier = true;
+                    difference_after_changing_y = height - ActiveFile().y_dimension_of_project_area;
+                }
+
+                if (ActiveFile().x_dimension_of_project_area > width)
+                {
+                    is_width_larger_than_earlier = false;
+                    difference_after_changing_x = ActiveFile().x_dimension_of_project_area - width;
+                }
+                else
+                {
+                    is_width_larger_than_earlier = true;
+                    difference_after_changing_x = width - ActiveFile().x_dimension_of_project_area;
+                }
+
+                Application.Current.MainWindow = this;
+
+                if (is_height_larger_than_earlier)
+                {
+                    Application.Current.MainWindow.Height += difference_after_changing_y;
+                    ferma_stats_panel.Margin = new Thickness(
+                        ferma_stats_panel.Margin.Left,
+                        ferma_stats_panel.Margin.Top + difference_after_changing_y,
+                        0,
+                        0
+                    );
+                }
+                else
+                {
+                    Application.Current.MainWindow.Height -= difference_after_changing_y;
+                    ferma_stats_panel.Margin = new Thickness(
+                        ferma_stats_panel.Margin.Left,
+                        ferma_stats_panel.Margin.Top - difference_after_changing_y,
+                        0,
+                        0
+                    );
+                }
+
+                if (is_width_larger_than_earlier)
+                {
+                    Application.Current.MainWindow.Width += difference_after_changing_x;
+                }
+                else
+                {
+                    Application.Current.MainWindow.Width -= difference_after_changing_x;
+                }
+
+                ActiveFile().x_dimension_of_project_area = width;
+                ActiveFile().y_dimension_of_project_area = height;
+
+                scheme.Width = width;
+                scheme.Height = height;
+
+                if (is_height_larger_than_earlier)
+                    borders.Height += difference_after_changing_y;
+                else
+                    borders.Height -= difference_after_changing_y;
+
+                if (is_width_larger_than_earlier)
+                    borders.Width += difference_after_changing_y;
+                else
+                    borders.Width -= difference_after_changing_y;
+
+                RepaintScheme();
+
+                return true;
+            }
+
         }
 
         private void stressCaseChange(object sender, SelectionChangedEventArgs e)

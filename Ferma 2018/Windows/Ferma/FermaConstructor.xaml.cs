@@ -89,7 +89,6 @@ namespace Ferma_2018.Windows.Ferma
 
         private void Init(object sender, EventArgs e)
         {
-            button.Visibility = Visibility.Hidden;
             LoadActiveFileParams();
         }
 
@@ -140,10 +139,14 @@ namespace Ferma_2018.Windows.Ferma
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            /*ferma_form.ChangeSchemeScale(
-                float.Parse(x_dimension_of_project_area.Text), 
+            if (!ferma_form.ChangeSchemeScale(
+                float.Parse(x_dimension_of_project_area.Text),
                 float.Parse(y_dimension_of_project_area.Text)
-            );*/
+            ))
+            {
+                x_dimension_of_project_area.Text = active_file.x_dimension_of_project_area.ToString();
+                y_dimension_of_project_area.Text = active_file.y_dimension_of_project_area.ToString();
+            }
         }
 
         private void linear_dimension_SelectionChanged(object sender, SelectionChangedEventArgs e)
