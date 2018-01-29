@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Ferma_2018.Logic.Ferma;
+using System.Data;
 
 namespace Ferma_2018.Windows.Ferma
 {
@@ -98,12 +99,50 @@ namespace Ferma_2018.Windows.Ferma
 
             short id = 1;
 
+            DataTable dt = new DataTable() { TableName = "t1" };
+
+            var id_column = new DataColumn("Номер стержня");
+            id_column.DataType = typeof(short);
+
+            var start_node_column = new DataColumn("Начальный узел");
+            start_node_column.DataType = typeof(short);
+
+            var end_node_column = new DataColumn("Конечный узел");
+            end_node_column.DataType = typeof(short);
+
+            var length_column = new DataColumn("Длина (" + active_file.linear_dimension + ")");
+            id_column.DataType = typeof(float);
+
+            dt.Columns.Add(id_column);
+            dt.Columns.Add(start_node_column);
+            dt.Columns.Add(end_node_column);
+            dt.Columns.Add(length_column);
+           
             foreach (FermaKernel kernel in active_file.kernels)
             {
-                result.Add(new FermaKernelGridTable(id, kernel.start_node, kernel.end_node, 0f));
+                dt.Rows.Add((short)id, kernel.start_node, kernel.end_node, CalculateKernelLenght(kernel));
                 id++;
             }
-            kernels.ItemsSource = result;
+
+            kernels.ItemsSource = dt.DefaultView;
+        }
+
+        private float CalculateKernelLenght(FermaKernel kernel)
+        {
+            var start_node = active_file.nodes[kernel.start_node - 1];
+            var end_node   = active_file.nodes[kernel.end_node - 1];
+
+            float cathetus_1 = 0f;
+            float cathetus_2 = 0f;
+
+            cathetus_1 = Math.Abs(start_node.x - end_node.x);
+            cathetus_2 = Math.Abs(start_node.y - end_node.y);
+
+            var length = Math.Round(
+                Math.Sqrt(Math.Pow((cathetus_1), 2) + Math.Pow((cathetus_2), 2)), 2
+            );
+
+            return (float)length;
         }
 
         private void kernels_Loaded(object sender, RoutedEventArgs e)
@@ -113,15 +152,16 @@ namespace Ferma_2018.Windows.Ferma
 
         private void kernels_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            FermaKernelGridTable path = kernels.SelectedItem as FermaKernelGridTable;
+            var test = kernels.SelectedItem as DataRowView;
+            short id = short.Parse(test.Row.ItemArray[0].ToString());
 
             if (kernel_selected)
             {
                 UnselectKernel(selected_kernel);
-                SelectKernel(path.id);
+                SelectKernel(id);
             }
             else
-                SelectKernel(path.id);
+                SelectKernel(id);
         }
 
         private void SelectKernel(short id)
