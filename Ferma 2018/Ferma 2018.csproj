@@ -160,10 +160,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UI\icons\Constructor.png" />
+    <Content Include="Resources\UI\icons\NodeFixedX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\UI\icons\NodeFixedXY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\UI\icons\NodeFixedY.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sqlite3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\UI\icons\minus.png" />
+    <Content Include="Resources\UI\icons\minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\UI\icons\plus.png" />
     <Resource Include="Resources\UI\icons\definitions\E.png" />
     <Resource Include="Resources\UI\icons\definitions\q.bmp" />

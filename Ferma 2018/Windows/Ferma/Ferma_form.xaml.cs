@@ -156,33 +156,74 @@ namespace Ferma_2018.Windows.Ferma
 
             foreach (FermaNode node in file_loader.active_file.stress_cases[index].nodes)
             {
-                Ellipse point = new Ellipse();
-                point.Height = 10;
-                point.Width = 10;
-                point.ToolTip =
-                    i+ "\n" +
-                    "x: " + node.x.ToString() + ", y: " + node.y.ToString()
-                    + ", \nstress x: " + node.x_stress_force + ", stress y: " + node.y_stress_force + "\n";
-                    
-                SolidColorBrush SolidColorBrush = new SolidColorBrush();
+                if (node.x_fixed || node.y_fixed)
+                {
+                    BitmapImage fixed_node_image = new BitmapImage();
 
-                //if (node.x_fixed || node.y_fixed)
-                //    SolidColorBrush.Color = Color.FromRgb(255, 0, 0);
-                //else
+                    if (node.x_fixed == true && node.y_fixed == true)
+                    {
+                        fixed_node_image = new BitmapImage
+                        (new Uri("Resources\\UI\\icons\\NodeFixedXY.png", UriKind.Relative));
+                    }
+
+                    if (node.x_fixed == true && node.y_fixed == false)
+                    {
+                        fixed_node_image = new BitmapImage
+                        (new Uri("Resources\\UI\\icons\\NodeFixedX.png", UriKind.Relative));
+                    }
+
+                    if (node.x_fixed == false && node.y_fixed == true)
+                    {
+                        fixed_node_image = new BitmapImage
+                        (new Uri("Resources\\UI\\icons\\NodeFixedY.png", UriKind.Relative));
+                    }
+
+                    ImageBrush image_brush = new ImageBrush(fixed_node_image);
+
+                    Canvas fixed_node = new Canvas();
+                    fixed_node.Width = 25;
+                    fixed_node.Height = 23;
+                    fixed_node.Background = image_brush;
+
+                    Canvas.SetLeft(fixed_node, node.x - 25/2);
+                    Canvas.SetBottom(fixed_node, node.y - 26/2);
+
+                    fixed_node.ToolTip =
+                        i + "\n" +
+                        "x: " + node.x.ToString() + ", y: " + node.y.ToString()
+                        + ", \nstress x: " + node.x_stress_force + ", stress y: " + node.y_stress_force + "\n";
+
+
+                    scheme.Children.Add(fixed_node);
+                }
+                else
+                {
+                    Ellipse point = new Ellipse();
+                    point.Height = 10;
+                    point.Width = 10;
+                    point.ToolTip =
+                        i + "\n" +
+                        "x: " + node.x.ToString() + ", y: " + node.y.ToString()
+                        + ", \nstress x: " + node.x_stress_force + ", stress y: " + node.y_stress_force + "\n";
+
+                    SolidColorBrush SolidColorBrush = new SolidColorBrush();
+
                     SolidColorBrush.Color = Color.FromRgb(255, 255, 255);
 
-                point.Fill = SolidColorBrush;
-                point.StrokeThickness = 10;
+                    point.Fill = SolidColorBrush;
+                    point.StrokeThickness = 2;
 
-                if (node.x_fixed || node.y_fixed || node.x_stress_force != 0 || node.y_stress_force != 0)
-                    point.Stroke = Brushes.Red;
-                else
-                    point.Stroke = Brushes.Blue;
+                    if (node.x_fixed || node.y_fixed || node.x_stress_force != 0 || node.y_stress_force != 0)
+                        point.Stroke = Brushes.Red;
+                    else
+                        point.Stroke = Brushes.Blue;
 
-                Canvas.SetLeft(point, node.x);
-                Canvas.SetBottom(point, node.y);
-                
-                scheme.Children.Add(point);
+                    Canvas.SetLeft(point, node.x);
+                    Canvas.SetBottom(point, node.y);
+
+                    scheme.Children.Add(point);
+                }
+
                 i++;
             }
         }
