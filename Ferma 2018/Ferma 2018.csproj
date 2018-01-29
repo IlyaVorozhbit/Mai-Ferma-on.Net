@@ -97,6 +97,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Ferma\FermaHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Ferma\Ferma_form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +122,9 @@
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="Windows\Ferma\FermaConstructor.xaml.cs">
       <DependentUpon>FermaConstructor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Ferma\FermaHelp.xaml.cs">
+      <DependentUpon>FermaHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Ferma\Ferma_form.xaml.cs">
       <DependentUpon>Ferma_form.xaml</DependentUpon>

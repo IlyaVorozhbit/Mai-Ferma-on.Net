@@ -25,6 +25,7 @@ namespace Ferma_2018.Windows.Ferma
         public FermaFileLoader file_loader;
         public FermaConstructor constructor;
         public List<int> drawed_kernels;
+        public FermaHelp ferma_help;
 
         public float difference_after_changing_y = 0f;
         public float difference_after_changing_x = 0f;
@@ -207,13 +208,22 @@ namespace Ferma_2018.Windows.Ferma
                         + ", \nstress x: " + node.x_stress_force + ", stress y: " + node.y_stress_force + "\n";
 
                     SolidColorBrush SolidColorBrush = new SolidColorBrush();
-
+ 
                     SolidColorBrush.Color = Color.FromRgb(255, 255, 255);
 
                     point.Fill = SolidColorBrush;
                     point.StrokeThickness = 2;
 
-                    if (node.x_fixed || node.y_fixed || node.x_stress_force != 0 || node.y_stress_force != 0)
+                    bool is_stressed_in_some_case = false;
+
+                    for(short j = 0; j < file_loader.active_file.stress_cases.Length; j++)
+                    {
+                        FermaNode checking_node = file_loader.active_file.stress_cases[j].nodes[i - 1];
+                        if (checking_node.x_stress_force != 0 || checking_node.y_stress_force != 0)
+                            is_stressed_in_some_case = true;
+                    }
+
+                    if (is_stressed_in_some_case)
                         point.Stroke = Brushes.Red;
                     else
                         point.Stroke = Brushes.Blue;
@@ -457,6 +467,14 @@ namespace Ferma_2018.Windows.Ferma
         private void Window_Initialized(object sender, EventArgs e)
         {
             drawed_kernels = new List<int>();
+        }
+
+        private void btn_help_Click(object sender, RoutedEventArgs e)
+        {
+            if (ferma_help == null)
+                ferma_help = new FermaHelp();
+
+            ferma_help.Show();
         }
     }
 

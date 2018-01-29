@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferma_2018.Windows.Ferma"
         mc:Ignorable="d"
-        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="560.372" Width="575.319" ResizeMode="CanMinimize" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" Closing="onBeforeClosing" Initialized="Window_Initialized">
+        Title="САПР Ferma: 2018 - Подсистема Ферменная конструкция" Height="597.372" Width="575.319" ResizeMode="CanMinimize" Icon="/Ferma 2018;component/Ferma_2018_Logo.ico" Closing="onBeforeClosing" Initialized="Window_Initialized" WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <Canvas x:Name="scheme" RenderTransformOrigin="0.5,0.5" Margin="44,90,36,125" Panel.ZIndex="2"/>
+        <Canvas x:Name="scheme" RenderTransformOrigin="0.5,0.5" Margin="41,129,39,86" Panel.ZIndex="2"/>
 
-        <Canvas x:Name="borders" Margin="23,76,22,0" Height="372" VerticalAlignment="Top" Background="White"/>
-        <ToolBar x:Name="toolBar" Height="45" VerticalAlignment="Top" Margin="0,26,0,0" Background="White" BorderBrush="#FFB6B6B6" BorderThickness="0,1">
+        <Canvas x:Name="borders" Margin="20,115,25,0" Height="372" VerticalAlignment="Top" Background="White"/>
+        <ToolBar x:Name="toolBar" Height="45" VerticalAlignment="Top" Margin="0,45,0,0" Background="White" BorderBrush="#FFE6E6E6" BorderThickness="0,1">
 
             <Button x:Name="buttonDrawNode" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="39" Click="buttonDrawNode_Click" Margin="0,2,0,0" Background="White">
                 <DockPanel>
@@ -32,15 +32,25 @@
                 </ComboBox.Background>
             </ComboBox>
         </ToolBar>
-        <Grid x:Name="ferma_stats_panel" Margin="0,464,0,0">
+        <Grid x:Name="ferma_stats_panel" Margin="0,501,0,0">
             <Image Source="/Resources/UI/icons/definitions/ro.bmp" x:Name="image_ro" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="24" Height="13"/>
             <Label x:Name="ro_label" Content="- - -" HorizontalAlignment="Left" Height="24" Margin="39,6,0,0" VerticalAlignment="Top" Width="72" Background="White" FontSize="11"/>
 
             <Image Source="/Ferma 2018;component/Resources/UI/icons/definitions/sg.bmp" x:Name="image_sigma" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="26" Height="13" RenderTransformOrigin="1.375,1.308"/>
             <Label x:Name="sigma_label" Content="- - -" HorizontalAlignment="Left" Height="24" Margin="39,33,0,0" VerticalAlignment="Top" Width="72" Background="White" FontSize="11"/>
         </Grid>
-        <ToolBar x:Name="toolBar1" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="569">
+        <ToolBar x:Name="toolBar1" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="569" Margin="0,19,0,0" Background="White">
             <Label x:Name="filename_label" Content="Откройте файл для начала работы" Height="24" Margin="0,-2,0,0" VerticalAlignment="Top" Width="537" FontSize="11" BorderThickness="0"/>
         </ToolBar>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="569" Background="White" BorderBrush="#FFE6E6E6" BorderThickness="0,0,0,1">
+            <MenuItem Header="Проект"/>
+            <MenuItem Header="Вид"/>
+            <MenuItem Header="Расчет"/>
+            <MenuItem Header="Результаты"/>
+            <MenuItem Header="Действия"/>
+            <MenuItem Header="Ток"/>
+            <MenuItem Header="Отчёт"/>
+            <MenuItem x:Name="btn_help" Header="Помощь" Click="btn_help_Click"/>
+        </Menu>
     </Grid>
 </Window>
